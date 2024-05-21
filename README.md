@@ -1,10 +1,8 @@
 ## AudioRecorder
 
----
-
 `components/audio/AudioRecorder.tsx`
 
-### **Einführung**
+### Einführung
 
 Die `AudioRecorder`-Komponente in React ermöglicht es Benutzern, Audioaufnahmen direkt im Browser zu erstellen und eine Echtzeit-Audio-Visualisierung anzuzeigen. Diese Komponente verwendet die `MediaRecorder` API und die `LiveAudioVisualizer`-Bibliothek von `react-audio-visualize`.
 
@@ -14,11 +12,14 @@ Der AudioRecorder handelt dabei alle Aspekte der Aufnahme.
 - Recording
 - Visualisierung
 
-![AudioRecorder Demo Page](https://prod-files-secure.s3.us-west-2.amazonaws.com/780e0c0a-feda-42e8-8e71-f224dcfdff19/2797d900-e9c2-46e9-827d-8ed9f904059b/Untitled.png)
+<p align="center >
+  <img src="https://prod-files-secure.s3.us-west-2.amazonaws.com/780e0c0a-feda-42e8-8e71-f224dcfdff19/2797d900-e9c2-46e9-827d-8ed9f904059b/Untitled.png">
+</p> 
+
 
 AudioRecorder Demo Page
 
-### **Installation**
+### Installation
 
 Stellen Sie sicher, dass Sie die `react-audio-visualize`-Bibliothek installiert haben:
 
