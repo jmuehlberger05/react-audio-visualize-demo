@@ -7,8 +7,8 @@ function Page() {
   const [isRecording, setIsRecording] = useState(false);
 
   return (
-    <div className="w-full h-dvh bg-gray-200">
-      <h1 className="text-2xl text-center py-4 pb-10">AudioRecorder.tsx</h1>
+    <main className="w-full min-h-dvh bg-gray-200 p-4">
+      <h1 className="text-2xl text-center pb-10">AudioRecorder.tsx</h1>
       <div className="w-full flex flex-col gap-10 items-center justify-center">
         <div className="h-[400px] w-[500px] bg-white flex justify-center rounded-xl">
           <AudioRecorder
@@ -50,7 +50,7 @@ function Page() {
           </button>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
 
