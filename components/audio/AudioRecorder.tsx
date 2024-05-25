@@ -1,6 +1,11 @@
+"use client";
+
 import { useEffect, useState } from "react";
 // @ts-ignore
 import { LiveAudioVisualizer } from "react-audio-visualize";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export const getMicrophoneStream = async (): Promise<MediaStream> => {
   try {
@@ -24,6 +29,9 @@ interface AudioRecorderProps {
   className?: string;
   visualizerClassName?: string;
   maxDecibels?: number;
+  router?: AppRouterInstance;
+  onMicrophoneDenied?: (error: any) => void;
+  mirrored?: boolean;
 }
 
 const AudioRecorder: React.FC<AudioRecorderProps> = ({
@@ -38,6 +46,9 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
   className = "",
   visualizerClassName = "",
   maxDecibels = 100,
+  router,
+  onMicrophoneDenied,
+  mirrored = false,
 }) => {
   const [mediaRecorder, setMediaRecorder] = useState<MediaRecorder | null>(
     null
@@ -97,20 +108,55 @@ const AudioRecorder: React.FC<AudioRecorderProps> = ({
 
   return (
     <div className={className}>
-      {visualizer && recording && mediaRecorder && audioContext && (
-        <LiveAudioVisualizer
-          mediaRecorder={mediaRecorder}
-          audioContext={audioContext}
-          width={width}
-          height={height}
-          barWidth={barWidth}
-          barColor={barColor}
-          smoothingTimeConstant={smoothingTimeConstant}
-          fftSize={fftSize}
-          className={visualizerClassName}
-          maxDecibels={maxDecibels}
-        />
+      {mirrored && visualizer && recording && mediaRecorder && audioContext && (
+        <div className={`flex items-end gap-[1.5px]`}>
+          <div className={`rotate-180 mb-[-1px] ${visualizerClassName}`}>
+            <LiveAudioVisualizer
+              mediaRecorder={mediaRecorder}
+              audioContext={audioContext}
+              width={width / 2}
+              height={height}
+              barWidth={barWidth}
+              barColor={barColor}
+              smoothingTimeConstant={smoothingTimeConstant}
+              fftSize={fftSize}
+              maxDecibels={maxDecibels}
+            />
+          </div>
+          <div>
+            <LiveAudioVisualizer
+              mediaRecorder={mediaRecorder}
+              audioContext={audioContext}
+              width={width / 2}
+              height={height}
+              barWidth={barWidth}
+              barColor={barColor}
+              smoothingTimeConstant={smoothingTimeConstant}
+              fftSize={fftSize}
+              className={visualizerClassName}
+              maxDecibels={maxDecibels}
+            />
+          </div>
+        </div>
       )}
+      {!mirrored &&
+        visualizer &&
+        recording &&
+        mediaRecorder &&
+        audioContext && (
+          <LiveAudioVisualizer
+            mediaRecorder={mediaRecorder}
+            audioContext={audioContext}
+            width={width}
+            height={height}
+            barWidth={barWidth}
+            barColor={barColor}
+            smoothingTimeConstant={smoothingTimeConstant}
+            fftSize={fftSize}
+            className={visualizerClassName}
+            maxDecibels={maxDecibels}
+          />
+        )}
     </div>
   );
 };

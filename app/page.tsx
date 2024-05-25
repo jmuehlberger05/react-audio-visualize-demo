@@ -19,6 +19,7 @@ function Page() {
             fftSize={1024}
             maxDecibels={-20}
             barColor="rgb(0,0,0)"
+            mirrored
           />
         </div>
         <div className="flex justify-between w-[500px]">
@@ -41,6 +42,9 @@ function Page() {
             <br />
 
             {"barColor='rgb(0,0,0)'"}
+            <br />
+
+            {"mirrored"}
           </pre>
           <button
             className="start-recording bg-white px-6 py-2 rounded-xl shadow-md h-fit"
